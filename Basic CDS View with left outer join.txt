@@ -1,0 +1,41 @@
+/*  
+    Author  : Nikhil Mishra
+    Date    : 17.09.2020
+    Desc    : CDSV View with left outer join
+*/
+
+@AbapCatalog.sqlViewName: 'ZDDLS_CUSTOMER'  // It is mandatory to give sqlViewName
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #CHECK
+@EndUserText.label: 'Customer Details'
+
+define view ZCDSV_CUSTOMER
+    as select from kna1   
+    left outer join knvv                    
+    on knvv.kunnr = kna1.kunnr              // Common fields between two entities 
+{
+// kunnr is avaiable in both KNA1 and KNVV, so it's mandatory to mention table name 
+    key knvv.kunnr,                         
+             name1,
+             ort01,
+             land1,
+             vkorg,
+             vtweg,
+             spart
+} 
+
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
