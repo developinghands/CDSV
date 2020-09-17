@@ -1,0 +1,32 @@
+/*  
+    Author  : Nikhil Mishra
+    Date    : 17.09.2020
+    Desc    : Simple CDS View with multiple parameters
+*/
+
+@AbapCatalog.sqlViewName: 'ZDDLS_CUSTOMER'  // It is mandatory to give sqlViewName
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #CHECK
+@EndUserText.label: 'Customer Details'
+
+define view ZCDSV_CUSTOMER
+                //  name of parameter : type of the parameter
+    with parameters p_vkorg : vkorg,        // Multiple parameters can be separated by comma's
+                    p_vtweg : vtweg
+    as select from kna1   
+    left outer join knvv                    
+    on knvv.kunnr = kna1.kunnr              // Common fields between two entities 
+{
+// kunnr is avaiable in both KNA1 and KNVV, so it's mandatory to mention table name 
+    key knvv.kunnr,                         
+             name1,
+             ort01,
+             land1,
+             vkorg,
+             vtweg,
+             spart
+} 
+    where vkorg = $parameters.p_vkorg      
+      and vtweg = $parameters.p_vtweg       
+  
