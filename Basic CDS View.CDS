@@ -11,8 +11,12 @@
 @AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'Simple CDS View'
+
 // Replace data_source_name with table name
-define view ZCDSV_SIMPLE as select from kna1 {     
+
+define view ZCDSV_SIMPLE 
+as select from kna1 
+{     
     key kunnr, 
         name1,
         ort01,
